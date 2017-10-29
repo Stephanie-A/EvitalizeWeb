@@ -14,6 +14,9 @@
         
       //Draw the bar chart for quality of devices returned
       google.charts.setOnLoadCallback(drawQualityChart);
+        
+      //Draw the bar chart for ROI of devices returned
+      google.charts.setOnLoadCallback(drawROIChart);
 
       // Callback that draws the pie chart for phones.
       function drawPhonesChart() {
@@ -85,6 +88,29 @@
         var chart = new google.visualization.BarChart(document.getElementById('Quality_chart_div'));
         chart.draw(data, options);
       }
+        
+      //Callback that draws the bar chart for ROI
+      function drawROIChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Device');
+        data.addColumn('number', 'Percentage');
+        data.addRows([
+            ['Phones', 12.5],
+            ['Laptops', 17],
+            ['Desktops', 15.8],
+            ['TV', 20]
+        ]);
+          
+        var options = {
+            title: "Average Return on Investment of Devices Recycled",
+            width: 700,
+            height: 500,
+            bar: {groupWidth: "95%"},
+            legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('ROI_chart_div'));
+        chart.draw(data, options);
+      }
     </script>
   </head>
   <body>
@@ -95,7 +121,8 @@
         <td><div id="Devices_chart_div" style="border: 1px solid #ccc"></div></td>
       </tr>
       <tr>
-        <td><div id="Quality_chart_div" style="border: 1px solid #ccc"></div></td>  
+        <td><div id="Quality_chart_div" style="border: 1px solid #ccc"></div></td>
+        <td><div id="ROI_chart_div" style="border: 1px solid #ccc"></div></td>
       </tr>
     </table>
   </body>
