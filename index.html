@@ -1,0 +1,102 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load Charts and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Draw the pie chart for phones when Charts is loaded.
+      google.charts.setOnLoadCallback(drawPhonesChart);
+
+      // Draw the pie chart for the devices when Charts is loaded.
+      google.charts.setOnLoadCallback(drawDevicesChart);
+        
+      //Draw the bar chart for quality of devices returned
+      google.charts.setOnLoadCallback(drawQualityChart);
+
+      // Callback that draws the pie chart for phones.
+      function drawPhonesChart() {
+
+        // Create the data table for phones.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Phones');
+        data.addColumn('number', 'Amount');
+        data.addRows([
+          ['iPhone 4S', 3],
+          ['iPhone 6', 4],
+          ['Galaxy Note 7', 10],
+          ['Pixel', 4],
+          ['Nokia', 1]
+        ]);
+
+        // Set options for phones pie chart.
+        var options = {title:'How Many Phones were Recycled',
+                       width:700,
+                       height:500};
+
+        // Instantiate and draw the chart for phones.
+        var chart = new google.visualization.PieChart(document.getElementById('Phones_chart_div'));
+        chart.draw(data, options);
+      }
+
+      // Callback that draws the pie chart for devices.
+      function drawDevicesChart() {
+
+        // Create the data table for devices.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Devices');
+        data.addColumn('number', 'Amount');
+        data.addRows([
+          ['Phones', 22],
+          ['Laptops', 6],
+          ['Desktop', 8],
+          ['TV', 3]
+        ]);
+
+        // Set options for devices pie chart.
+        var options = {title:'How Many Devices were Recycled',
+                       width:700,
+                       height:500};
+
+        // Instantiate and draw the chart for devices.
+        var chart = new google.visualization.PieChart(document.getElementById('Devices_chart_div'));
+        chart.draw(data, options);
+      }
+        
+      //Callback that draws the bar chart for quality
+      function drawQualityChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Quality');
+        data.addColumn('number', 'Amount');
+        data.addRows([
+            ['Poor', 7],
+            ['Average', 23],
+            ['New', 9]
+        ]);
+          
+        var options = {
+            title: "Quality of Devices Recycled",
+            width: 700,
+            height: 500,
+            bar: {groupWidth: "95%"},
+            legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('Quality_chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <!--Table and divs that hold the pie charts-->
+    <table class="columns">
+      <tr>
+        <td><div id="Phones_chart_div" style="border: 1px solid #ccc"></div></td>
+        <td><div id="Devices_chart_div" style="border: 1px solid #ccc"></div></td>
+      </tr>
+      <tr>
+        <td><div id="Quality_chart_div" style="border: 1px solid #ccc"></div></td>  
+      </tr>
+    </table>
+  </body>
+</html>
